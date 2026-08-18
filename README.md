@@ -54,7 +54,7 @@ Prediction
 Spam / Ham
 </pre>
 
-<h2>🛠️ Tech Stack Used</h2>
+<h2> Tech Stack Used</h2>
 
 <ol>
   <li>Python</li>
@@ -70,7 +70,7 @@ Spam / Ham
   <li>MongoDB</li>
 </ol>
 
-<h2>☁️ Infrastructure Required</h2>
+<h2> Infrastructure Required</h2>
 
 <ul>
   <li>AWS S3</li>
@@ -131,11 +131,6 @@ cd Spam-Ham-Detection
 
 <h3> Create a Conda Environment</h3>
 
-<pre>
-conda create --prefix ./venv python=3.10 -y
-conda activate ./venv
-</pre>
-
 <h3> Install Dependencies</h3>
 
 <pre>
@@ -149,8 +144,6 @@ pip install -r requirements.txt
 <pre>
 set MONGODB_URL=&lt;YOUR_MONGODB_CONNECTION_STRING&gt;
 </pre>
-
-<p><b>Linux / macOS:</b></p>
 
 <pre>
 export MONGODB_URL=&lt;YOUR_MONGODB_CONNECTION_STRING&gt;

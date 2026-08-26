@@ -1,0 +1,383 @@
+/* =========================================
+   RESET
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+   ========================================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #ecfdf5,
+        #d1fae5,
+        #bbf7d0
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #1f2937;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+   ========================================= */
+
+.prediction-container {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 40px 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================================
+   PREDICTION CARD
+   ========================================= */
+
+.prediction-card {
+    width: 650px;
+    max-width: 100%;
+
+    background: #ffffff;
+
+    padding: 45px;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 15px 40px rgba(6, 78, 59, 0.15);
+
+    text-align: center;
+}
+
+
+/* =========================================
+   MAIN HEADING
+   ========================================= */
+
+.prediction-card > h1 {
+    color: #065f46;
+
+    font-size: 36px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   MESSAGE BOX
+   ========================================= */
+
+.message-box {
+    background: #f0fdf4;
+
+    border-left: 5px solid #16a34a;
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    margin-bottom: 25px;
+
+    text-align: left;
+}
+
+.message-box h3 {
+    color: #065f46;
+
+    font-size: 18px;
+
+    margin-bottom: 10px;
+}
+
+.message-box p {
+    color: #374151;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    word-wrap: break-word;
+}
+
+
+/* =========================================
+   RESULT BOX
+   ========================================= */
+
+.result {
+    padding: 25px;
+
+    border-radius: 15px;
+
+    margin-bottom: 30px;
+}
+
+.result h2 {
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+.result p {
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   HAM RESULT
+   ========================================= */
+
+.ham {
+    background: #dcfce7;
+
+    border: 2px solid #22c55e;
+
+    color: #15803d;
+}
+
+
+/* =========================================
+   SPAM RESULT
+   ========================================= */
+
+.spam {
+    background: #fee2e2;
+
+    border: 2px solid #ef4444;
+
+    color: #dc2626;
+}
+
+
+/* =========================================
+   RECOMMENDATIONS SECTION
+   ========================================= */
+
+.recommendations {
+    margin-top: 30px;
+
+    margin-bottom: 30px;
+
+    text-align: left;
+}
+
+.recommendations h2 {
+    color: #065f46;
+
+    font-size: 24px;
+
+    text-align: center;
+
+    margin-bottom: 8px;
+}
+
+.recommendation-subtitle {
+    text-align: center;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   RECOMMENDATION ITEM
+   ========================================= */
+
+.recommendation-item {
+    background: #f0fdf4;
+
+    border: 1px solid #bbf7d0;
+
+    border-left: 5px solid #16a34a;
+
+    border-radius: 12px;
+
+    padding: 16px;
+
+    margin-bottom: 12px;
+
+    transition: all 0.3s ease;
+}
+
+.recommendation-item:hover {
+    transform: translateX(5px);
+
+    box-shadow:
+        0 5px 15px rgba(22, 163, 74, 0.15);
+}
+
+
+/* =========================================
+   RECOMMENDED MESSAGE
+   ========================================= */
+
+.recommended-text {
+    color: #374151;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 8px;
+
+    word-wrap: break-word;
+}
+
+
+/* =========================================
+   SIMILARITY SCORE
+   ========================================= */
+
+.similarity {
+    display: inline-block;
+
+    color: #15803d;
+
+    background: #dcfce7;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   NO RECOMMENDATIONS
+   ========================================= */
+
+.no-recommendations {
+    background: #f0fdf4;
+
+    border: 1px dashed #86efac;
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    color: #6b7280;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   BACK BUTTON
+   ========================================= */
+
+.back-btn {
+    display: inline-block;
+
+    padding: 14px 30px;
+
+    background: #16a34a;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #15803d;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(22, 163, 74, 0.25);
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .prediction-container {
+        padding: 25px 15px;
+    }
+
+    .prediction-card {
+        padding: 30px 20px;
+    }
+
+    .prediction-card > h1 {
+        font-size: 30px;
+    }
+
+    .result h2 {
+        font-size: 25px;
+    }
+
+    .recommendations h2 {
+        font-size: 21px;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE DEVICES
+   ========================================= */
+
+@media (max-width: 400px) {
+
+    .prediction-card {
+        padding: 25px 15px;
+    }
+
+    .prediction-card > h1 {
+        font-size: 26px;
+    }
+
+    .result {
+        padding: 20px 15px;
+    }
+
+    .result h2 {
+        font-size: 22px;
+    }
+
+    .back-btn {
+        width: 100%;
+        padding: 13px;
+    }
+}

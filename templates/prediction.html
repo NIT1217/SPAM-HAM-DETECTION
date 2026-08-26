@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='prediction.css') }}">
+
+</head>
+
+<body>
+
+    <div class="prediction-container">
+
+        <div class="prediction-card">
+
+            <!-- ================================= -->
+            <!-- PAGE TITLE -->
+            <!-- ================================= -->
+
+            <h1>Prediction Result</h1>
+
+
+            <!-- ================================= -->
+            <!-- USER MESSAGE -->
+            <!-- ================================= -->
+
+            <div class="message-box">
+
+                <h3>Your Message</h3>
+
+                <p>{{ input_text }}</p>
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- PREDICTION RESULT -->
+            <!-- ================================= -->
+
+            {% if prediction == "spam" %}
+
+                <div class="result spam">
+
+                    <h2>🚨 SPAM MESSAGE</h2>
+
+                    <p>
+                        This message has been classified as spam.
+                    </p>
+
+                </div>
+
+            {% else %}
+
+                <div class="result ham">
+
+                    <h2>✅ HAM MESSAGE</h2>
+
+                    <p>
+                        This message appears to be legitimate.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- ================================= -->
+            <!-- RECOMMENDATIONS -->
+            <!-- ================================= -->
+
+            <div class="recommendations">
+
+                <h2>🔍 Similar Messages</h2>
+
+                {% if recommendations %}
+
+                    <p class="recommendation-subtitle">
+                        Based on your previous searches:
+                    </p>
+
+
+                    {% for item in recommendations %}
+
+                        <div class="recommendation-item">
+
+                            <p class="recommended-text">
+                                {{ item.text }}
+                            </p>
+
+                            <span class="similarity">
+
+                                Similarity:
+                                {{ "%.2f"|format(item.score * 100) }}%
+
+                            </span>
+
+                        </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="no-recommendations">
+
+                        <p>
+                            No similar messages found yet.
+                        </p>
+
+                        <p>
+                            Try searching more messages to get
+                            better recommendations.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- BUTTON -->
+            <!-- ================================= -->
+
+            <a href="/input" class="back-btn">
+
+                Check Another Message
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

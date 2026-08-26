@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: #ecfdf5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container {
+    width: 100%;
+    padding: 20px;
+}
+
+.input-card {
+    width: 650px;
+    max-width: 100%;
+    margin: auto;
+    background: white;
+    padding: 45px;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(6, 78, 59, 0.15);
+    border-top: 6px solid #16a34a;
+}
+
+.input-card h1 {
+    text-align: center;
+    color: #065f46;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 30px;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+    padding: 18px;
+    border: 2px solid #bbf7d0;
+    border-radius: 12px;
+    background: #f0fdf4;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    resize: none;
+    outline: none;
+    color: #064e3b;
+}
+
+textarea:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+textarea::placeholder {
+    color: #86a892;
+}
+
+.check-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #16a34a;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.check-btn:hover {
+    background: #15803d;
+}
+
+@media (max-width: 600px) {
+
+    .input-card {
+        padding: 30px 20px;
+    }
+
+    .input-card h1 {
+        font-size: 27px;
+    }
+}

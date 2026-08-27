@@ -7,21 +7,27 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime
 
-from recommendation import get_recommendations
+from reccomendation.reccomendation import get_recommendations
 
 
 # ==========================================
 # FLASK APPLICATION
 # ==========================================
 
-app = Flask(__name__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, "templates"),
+    static_folder=os.path.join(BASE_DIR, "static")
+)
 
 
 # ==========================================
 # LOAD ENVIRONMENT VARIABLES
 # ==========================================
 
-load_dotenv()
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 MONGO_URI = os.getenv("MONGO_URI")
 
@@ -38,11 +44,15 @@ if not MONGO_URI:
 # CONNECT TO MONGODB
 # ==========================================
 
-client = MongoClient(MONGO_URI)
+client = MongoClient(
+    MONGO_URI,
+    serverSelectionTimeoutMS=5000
+)
 
 db = client["spam_ham_db"]
 
 search_history = db["search_history"]
+recommendation_collection = db["recommendations"]
 
 
 # ==========================================
@@ -64,7 +74,13 @@ except Exception as e:
 # LOAD SPAM/HAM MODEL
 # ==========================================
 
-with open("model/spam_detect_model.pkl", "rb") as file:
+model_path = os.path.join(
+    BASE_DIR,
+    "model",
+    "spam_detect_model.pkl"
+)
+
+with open(model_path, "rb") as file:
 
     spam_detect_model = pickle.load(file)
 
@@ -73,9 +89,19 @@ with open("model/spam_detect_model.pkl", "rb") as file:
 # LOAD VECTORIZER
 # ==========================================
 
-with open("model/vectorizer.pkl", "rb") as file:
+vectorizer_path = os.path.join(
+    BASE_DIR,
+    "model",
+    "vectorizer.pkl"
+)
+
+with open(vectorizer_path, "rb") as file:
 
     vectorizer = pickle.load(file)
+
+
+print("Spam/Ham model loaded successfully!")
+print("Vectorizer loaded successfully!")
 
 
 # ==========================================
@@ -83,9 +109,9 @@ with open("model/vectorizer.pkl", "rb") as file:
 # ==========================================
 
 @app.route("/")
-def home():
+def index():
 
-    return render_template("home.html")
+    return render_template("index.html")
 
 
 # ==========================================
@@ -121,7 +147,6 @@ def predict():
         return render_template("input.html")
 
 
-    # Remove unnecessary spaces
     input_text = input_text.strip()
 
 
@@ -135,7 +160,7 @@ def predict():
 
 
     # --------------------------------------
-    # Convert prediction to readable result
+    # Convert prediction
     # --------------------------------------
 
     if prediction == 1:
@@ -145,6 +170,9 @@ def predict():
     else:
 
         result = "ham"
+
+
+    print("Prediction:", result)
 
 
     # ======================================
@@ -164,7 +192,6 @@ def predict():
             }
 
         )
-
     )
 
 
@@ -181,6 +208,9 @@ def predict():
         top_n=3
 
     )
+
+
+    print("Recommendations generated:", recommendations)
 
 
     # ======================================
@@ -202,8 +232,33 @@ def predict():
 
 
     # ======================================
-    # SEND RESULT + RECOMMENDATIONS
-    # TO prediction.html
+    # SAVE RECOMMENDATIONS TO MONGODB
+    # ======================================
+
+    for recommendation in recommendations:
+
+        recommendation_collection.insert_one({
+
+            "input_text": input_text,
+
+            "recommendation_text": recommendation["text"],
+
+            "similarity_score": float(
+                recommendation["score"]
+            ),
+
+            "prediction": result,
+
+            "timestamp": datetime.now()
+
+        })
+
+
+    print("Recommendations saved to MongoDB.")
+
+
+    # ======================================
+    # SEND RESULT TO prediction.html
     # ======================================
 
     return render_template(
@@ -225,4 +280,4 @@ def predict():
 
 if __name__ == "__main__":
 
-    app.run(debug=True)
+    app.run(host ="0.0.0.0",debug=True)

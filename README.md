@@ -413,6 +413,13 @@ negatively affect users.
 
 <h2> Deployment</h2>
 
+<p align="center">
+  <a href="https://hub.docker.com/r/nitish1712/spamham">
+    <img src="./images/dockerhub.png" alt="Docker Hub Repository" width="800">
+  </a><br>
+  
+</p>
+
 <pre>
                    GitHub
                       │

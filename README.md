@@ -77,36 +77,6 @@ Spam / Ham
   <li>MongoDB Atlas</li>
 </ul>
 
-<h2> Project Structure</h2>
-
-<pre>
-Spam-Ham-Detection/
-│
-├── src/
-│   ├── components/
-│   │   ├── data_ingestion.py
-│   │   ├── data_validation.py
-│   │   ├── data_transformation.py
-│   │   ├── model_trainer.py
-│   │   ├── model_evaluation.py
-│   │   └── model_pusher.py
-│   
-│  
-│   
-│   
-│  
-│   
-│   
-│
-├
-├── app.py
-├── requirements.txt
-├── Dockerfile
-├
-├── .gitignore
-└── README.md
-</pre>
-
 <h2> How to Run</h2>
 
 <p>Before running this project, make sure you have:</p>

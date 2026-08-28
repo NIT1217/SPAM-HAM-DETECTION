@@ -73,9 +73,6 @@ Spam / Ham
 <h2> Infrastructure Required</h2>
 
 <ul>
-  <li>AWS S3</li>
-  <li>AWS EC2</li>
-  <li>AWS ECR</li>
   <li>GitHub Actions</li>
   <li>MongoDB Atlas</li>
 </ul>
@@ -93,19 +90,19 @@ Spam-Ham-Detection/
 │   │   ├── model_trainer.py
 │   │   ├── model_evaluation.py
 │   │   └── model_pusher.py
-│   │
-│   ├── pipeline/
-│   │   └── ...
-│   │
-│   ├── exception.py
-│   ├── logger.py
-│   └── utils.py
+│   
+│  
+│   
+│   
+│  
+│   
+│   
 │
-├── artifacts/
+├
 ├── app.py
 ├── requirements.txt
 ├── Dockerfile
-├── setup.py
+├
 ├── .gitignore
 └── README.md
 </pre>
@@ -163,7 +160,7 @@ python app.py
 <p>The application will start on:</p>
 
 <pre>
-http://localhost:5000
+http://localhost:8888
 </pre>
 
 <h2>Training</h2>
@@ -173,7 +170,7 @@ To train the Machine Learning pipeline, open:
 </p>
 
 <pre>
-http://localhost:5000/train
+http://localhost:8888/train
 </pre>
 
 <h3>Training Pipeline</h3>
@@ -199,7 +196,7 @@ To make predictions using the trained model:
 </p>
 
 <pre>
-http://localhost:5000/predict
+http://localhost:8888/predict
 </pre>
 
 <p>
@@ -222,17 +219,13 @@ Ham
 
 <pre>
 docker build \
---build-arg AWS_ACCESS_KEY_ID=&lt;AWS_ACCESS_KEY_ID&gt; \
---build-arg AWS_SECRET_ACCESS_KEY=&lt;AWS_SECRET_ACCESS_KEY&gt; \
---build-arg AWS_DEFAULT_REGION=&lt;AWS_DEFAULT_REGION&gt; \
---build-arg MONGODB_URL=&lt;MONGODB_URL&gt; \
 -t spam-ham-detection .
 </pre>
 
 <h3>2. Run Docker Container</h3>
 
 <pre>
-docker run -d -p 5000:5000 spam-ham-detection
+docker run -d -p 5000:8888 spamham
 </pre>
 
 <p>
@@ -240,7 +233,7 @@ Application URL:
 </p>
 
 <pre>
-http://localhost:5000
+http://localhost:8888
 </pre>
 
 <h2> Machine Learning Models Used</h2>
@@ -457,16 +450,10 @@ negatively affect users.
                 GitHub Actions
                       │
                       ↓
-                    AWS ECR
-                      │
-                      ↓
                  Docker Image
                       │
                       ↓
-                   AWS EC2
-                      │
-                      ↓
-                FastAPI App
+                    Rest API
                       │
               ┌───────┴───────┐
               ↓               ↓
